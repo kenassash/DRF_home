@@ -1,4 +1,4 @@
-# from rest_framework.viewsets import ModelViewSet
+from rest_framework.viewsets import ModelViewSet
 from rest_framework.viewsets import GenericViewSet
 from rest_framework import mixins
 # from .models import NoteUser
@@ -8,9 +8,9 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly, AllowAny, IsAu
 
 
 
-# class UserModelViewSet(ModelViewSet):
-class UserCustomViewSet(mixins.UpdateModelMixin, mixins.ListModelMixin, mixins.RetrieveModelMixin, GenericViewSet):
-    permission_classes = [AllowAny]
+class UserModelViewSet(ModelViewSet):
+# class UserCustomViewSet(mixins.UpdateModelMixin, mixins.ListModelMixin, mixins.RetrieveModelMixin, GenericViewSet):
+    # permission_classes = [AllowAny]
 
     # queryset = NoteUser.objects.all()
     queryset = User.objects.all()
