@@ -1,9 +1,9 @@
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.viewsets import GenericViewSet
-from rest_framework import mixins
+from rest_framework import mixins, generics
 # from .models import NoteUser
 from .models import User
-from .serializers import UserModelSerializer
+from .serializers import UserModelSerializer, UserModelSerializerV2
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, AllowAny, IsAuthenticated, IsAdminUser, DjangoModelPermissions, DjangoModelPermissionsOrAnonReadOnly
 
 
@@ -15,3 +15,18 @@ class UserModelViewSet(ModelViewSet):
     # queryset = NoteUser.objects.all()
     queryset = User.objects.all()
     serializer_class = UserModelSerializer
+
+
+    def get_serializer_class(self):
+        if hasattr(self.request, 'version') and self.request.version == 'v2':  # если версия передана и =='v2'
+            return UserModelSerializerV2
+        return UserModelSerializer
+
+class UserListAPIView(generics.ListAPIView):
+    queryset = User.objects.all()
+    # serializer_class = UserModelSerializer
+
+    def get_serializer_class(self):
+        if hasattr(self.request, 'version') and self.request.version == 'v2':   # если версия передана и =='v2'
+            return UserModelSerializerV2
+        return UserModelSerializer

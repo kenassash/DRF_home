@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'django_filters',
+    'drf_yasg',
     'users',
     'project',
 ]
@@ -134,7 +135,22 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
-    ]
+    ],
+    # http://127.0.0.1:8000/api/2.0/authors/
+    # 'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.URLPathVersioning',
+
+    # http://127.0.0.1:8000/api/2.0/authors/
+    # 'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.NamespaceVersioning',
+
+    # http://v1.test.com/api/authors/
+    # http://v2.test.com/api/authors/
+    # 'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.HostNameVersioning',
+
+    # http://test.com/api/authors/?version=2.0
+    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.QueryParameterVersioning',
+
+    # http://test.com/api/authors/
+    # 'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.AcceptHeaderVersioning',
 }
 
 if DEBUG:
