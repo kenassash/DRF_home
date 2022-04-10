@@ -1,26 +1,33 @@
-// import React from 'react'
-//
+import React from 'react'
+import {Link} from 'react-router-dom'
 
-const TodoItem = ({todos}) => {
-    return (
-        <tr>
-            {/*<td>*/}
-            {/*    {todo.id}*/}
-            {/*</td>*/}
-            <td>
-                {todos.project}
-            </td>
-            <td>
-                {todos.text}
-            </td>
-            <td>
-                {todos.user}
-            </td>
-        </tr>
-    )
+
+const TodoItem = ({todos, deleteTodo}) => {
+    if (todos.is_active) {
+        return (
+            <tr>
+                <td>
+                    {todos.id}
+                </td>
+                <td>
+                    {todos.project}
+                </td>
+                <td>
+                    {todos.text}
+                </td>
+                <td>
+                    {todos.user}
+                </td>
+                <td>
+                    <button onClick={() => deleteTodo(todos.id)} type='button'>Delete</button>
+                </td>
+            </tr>
+        )
+    }
+    return ""
 }
 
-const TodoList = ({todo}) => {
+const TodoList = ({todo, deleteTodo}) => {
     return (
         <table>
             {/*<th>*/}
@@ -35,7 +42,13 @@ const TodoList = ({todo}) => {
             <th>
                 User
             </th>
-            {todo.map((todos) => <TodoItem todos={todos}/>)}
+            {/*{todo.map((todos) => <TodoItem todos={todos}/>)}*/}
+            {
+                todo.map
+                (
+                    (todos) => <TodoItem todos={todos} deleteTodo={deleteTodo}/>
+                )
+            }
         </table>
     )
 }

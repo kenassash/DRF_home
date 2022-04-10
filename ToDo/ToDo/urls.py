@@ -13,9 +13,9 @@ from project.views import ProjectModelViewSet, TodoModelViewSet
 
 router = DefaultRouter()
 router.register('users', UserModelViewSet)
-# router.register('users_restrict', UserCustomViewSet)
 router.register('project', ProjectModelViewSet)
 router.register('todo', TodoModelViewSet)
+from django.views.generic import TemplateView
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -46,5 +46,6 @@ urlpatterns = [
 
     path('swagger/', schema_view.with_ui('swagger')),  # Swagger
     path('graphql/', GraphQLView.as_view(graphiql=True)),
-    re_path(r'^swagger(?P<format>\.json|\.yaml)', schema_view.without_ui())
+    re_path(r'^swagger(?P<format>\.json|\.yaml)', schema_view.without_ui()),
+    path('', TemplateView.as_view(template_name='index.html')),
 ]

@@ -8,7 +8,7 @@ from django_filters import rest_framework as filters
 
 
 class ProjectLimitOffsetPagination(LimitOffsetPagination):
-    default_limit = 10
+    default_limit = 20
 
 
 class ProjectFilter(filters.FilterSet):
