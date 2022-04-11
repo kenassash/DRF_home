@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-v=ded@awef+_nism7y4(%b2k)4_tyn)hb73ivu=+yyrsq2o_2k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -69,7 +69,7 @@ ROOT_URLCONF = 'ToDo.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / '..' / 'frontend' / 'build'],
+        'DIRS': [BASE_DIR / 'frontend' / 'build'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -197,7 +197,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-    BASE_DIR / '..' / 'frontend' / 'build' / 'static',
+    BASE_DIR / 'frontend' / 'build' / 'static',
 )
 
 # Default primary key field type
